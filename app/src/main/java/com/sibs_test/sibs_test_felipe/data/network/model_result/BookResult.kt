@@ -1,8 +1,8 @@
 package com.sibs_test.sibs_test_felipe.data.network.model_result
 
 data class BookResult(
-    val kind: String,
     val id: String,
+    val kind: String,
     val selflink: String,
     val volumeInfo: VolumeInfoResult,
     val publishedDate: String,
@@ -18,6 +18,5 @@ data class VolumeInfoResult(
 ): NetworkModule
 
 data class SalesInfoResult(
-    val country: String,
     val buyLink: String?
 ): NetworkModule

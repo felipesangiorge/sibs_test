@@ -1,8 +1,7 @@
 package com.sibs_test.sibs_test_felipe.ui.book_store_list
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.ViewModel
+import android.util.Log
+import androidx.lifecycle.*
 import com.sibs_test.sibs_test_felipe.core.Resource
 import com.sibs_test.sibs_test_felipe.data.repository.BookStoreRepository_Imp
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,8 +18,26 @@ class BookStoreListViewModel @Inject constructor(
     private val _navigation = MediatorLiveData<BookStoreListContract.ViewInstructions>()
     override val navigation: LiveData<BookStoreListContract.ViewInstructions> = _navigation
 
-    init {
-
+    private val getBookStoreListAction = MutableLiveData(Unit)
+    private val getBookStoreListResult = getBookStoreListAction.switchMap {
+        bookStoreRepository.getBookStoreList()
     }
 
+    init {
+        _error.addSource(getBookStoreListResult){
+            when(it){
+                is Resource.Failure -> Log.e("Fail","${it.error.message}")
+                is Resource.Loading -> {
+
+                }
+                is Resource.Success -> {
+                    Log.e("Success","${it.data}")
+                }
+            }
+        }
+    }
+
+    override fun bookItemClicked() {
+
+    }
 }

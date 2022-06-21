@@ -3,6 +3,7 @@ package com.sibs_test.sibs_test_felipe.di.module
 import com.sibs_test.sibs_test_felipe.data.network.BookStoreService
 import com.sibs_test.sibs_test_felipe.data.repository.BookStoreRepository
 import com.sibs_test.sibs_test_felipe.data.repository.BookStoreRepository_Imp
+import com.sibs_test.sibs_test_felipe.database.dao.BooksDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,6 +17,7 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun provideBookStoreRepository(
-        bookStoreService: BookStoreService
-    ): BookStoreRepository = BookStoreRepository_Imp(bookStoreService)
+        bookStoreService: BookStoreService,
+        booksDao: BooksDao
+    ): BookStoreRepository = BookStoreRepository_Imp(bookStoreService, booksDao)
 }

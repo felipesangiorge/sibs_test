@@ -25,7 +25,7 @@ class ServiceGenerator @Inject constructor() {
         const val X_PLATFORM_LABEL = "X-Platform"
         const val TIMEOUT_S = "TIMEOUT_SECONDS"
         const val ACCEPT_LANGUAGE = "Accept-Language"
-        const val BASE_URL = "https://developers.google.com/books/docs/v1/"
+        const val BASE_URL = "https://www.googleapis.com/books/v1/"
     }
 
     private val bookStoreRetrofitApiBuilder by lazy {

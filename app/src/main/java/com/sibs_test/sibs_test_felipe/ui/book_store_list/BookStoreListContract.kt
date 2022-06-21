@@ -13,7 +13,7 @@ interface BookStoreListContract {
     }
 
     interface ViewActions {
-
+        fun bookItemClicked()
     }
 
     sealed class ViewInstructions {
