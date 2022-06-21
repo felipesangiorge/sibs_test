@@ -56,7 +56,7 @@ dependencies {
     //LIVE-DATA
     def live_data = "2.4.1"
 
-    implementation "ndroidx.lifecycle:lifecycle-livedata-ktx:$live_data"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$live_data"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$live_data"
 
     //RETROFIT
@@ -73,4 +73,12 @@ dependencies {
     def hilt = "2.40.5"
     implementation "com.google.dagger:hilt-android:$hilt"
     kapt "com.google.dagger:hilt-android-compiler:$hilt"
+
+
+    //EPOXY RECYCLER VIEW BY AIRBNB
+    def epoxy = "4.0.0"
+
+    implementation "com.airbnb.android:epoxy:$epoxy"
+    implementation "com.airbnb.android:epoxy-paging:$epoxy"
+    kapt "com.airbnb.android:epoxy-processor:$epoxy"
 }
