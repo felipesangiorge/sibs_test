@@ -1,9 +1,8 @@
-package com.sibs_test.sibs_test_felipe.data.network
+package com.sibs_test.sibs_test_felipe.network
 
 import android.content.Context
 import android.os.Build
 import android.util.Log
-import androidx.annotation.RequiresApi
 import com.sibs_test.sibs_test_felipe.BuildConfig
 import com.sibs_test.sibs_test_felipe.core.ApiLiveDataCallAdapterFactory
 import com.sibs_test.sibs_test_felipe.core.RetryCallAdapterFactory

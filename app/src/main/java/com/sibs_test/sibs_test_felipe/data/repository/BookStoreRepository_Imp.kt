@@ -5,8 +5,8 @@ import com.sibs_test.sibs_test_felipe.core.ApiErrorResponse
 import com.sibs_test.sibs_test_felipe.core.ApiSuccessResponse
 import com.sibs_test.sibs_test_felipe.core.ErrorResponse
 import com.sibs_test.sibs_test_felipe.core.Resource
-import com.sibs_test.sibs_test_felipe.data.network.BookStoreService
-import com.sibs_test.sibs_test_felipe.data.network.model_result.BookResult
+import com.sibs_test.sibs_test_felipe.network.BookStoreService
+import com.sibs_test.sibs_test_felipe.network.model_result.BookResult
 import com.sibs_test.sibs_test_felipe.database.dao.BooksDao
 import com.sibs_test.sibs_test_felipe.extensions.NonnullMediatorLiveData
 import javax.inject.Inject

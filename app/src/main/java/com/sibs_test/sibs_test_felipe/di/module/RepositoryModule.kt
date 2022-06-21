@@ -1,6 +1,6 @@
 package com.sibs_test.sibs_test_felipe.di.module
 
-import com.sibs_test.sibs_test_felipe.data.network.BookStoreService
+import com.sibs_test.sibs_test_felipe.network.BookStoreService
 import com.sibs_test.sibs_test_felipe.data.repository.BookStoreRepository
 import com.sibs_test.sibs_test_felipe.data.repository.BookStoreRepository_Imp
 import com.sibs_test.sibs_test_felipe.database.dao.BooksDao

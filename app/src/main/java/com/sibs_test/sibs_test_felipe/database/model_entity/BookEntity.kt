@@ -14,7 +14,9 @@ data class BookEntity(
     @ColumnInfo(name = "book_publishedDate") val publishedDate: String,
     @ColumnInfo(name = "book_description") val description: String,
     @Embedded(prefix = "book_")
-    val saleInfo: SalesInfoEntity
+    val saleInfo: SalesInfoEntity,
+    @Embedded(prefix = "book_")
+    val industryIdentifiersEntity: IndustryIdentifiersEntity
 ) : EntityModel
 
 @Entity
@@ -28,4 +30,16 @@ data class VolumeInfoEntity(
 @Entity
 data class SalesInfoEntity(
     @ColumnInfo(name = "sales_info_buyLink") val buyLink: String?
+) : EntityModel
+
+@Entity
+data class IndustryIdentifiersEntity(
+    @Embedded
+    val imageLink: ThumbnailsInfoEntity
+) : EntityModel
+
+@Entity
+data class ThumbnailsInfoEntity(
+    @ColumnInfo(name = "smallThumbnail") val smallThumbnail: String,
+    @ColumnInfo(name = "thumbnail") val thumbnail: String
 ) : EntityModel

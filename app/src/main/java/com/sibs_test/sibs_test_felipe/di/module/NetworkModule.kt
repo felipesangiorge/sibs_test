@@ -1,9 +1,9 @@
 package com.sibs_test.sibs_test_felipe.di.module
 
 import android.content.Context
-import com.sibs_test.sibs_test_felipe.data.network.ApiRequest
-import com.sibs_test.sibs_test_felipe.data.network.BookStoreService
-import com.sibs_test.sibs_test_felipe.data.network.ServiceGenerator
+import com.sibs_test.sibs_test_felipe.network.ApiRequest
+import com.sibs_test.sibs_test_felipe.network.BookStoreService
+import com.sibs_test.sibs_test_felipe.network.ServiceGenerator
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

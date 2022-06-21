@@ -1,7 +1,7 @@
 package com.sibs_test.sibs_test_felipe.core
 
 import androidx.lifecycle.LiveData
-import com.sibs_test.sibs_test_felipe.data.network.BaseResponse
+import com.sibs_test.sibs_test_felipe.network.BaseResponse
 import retrofit2.*
 import java.lang.reflect.Type
 import java.util.concurrent.atomic.AtomicBoolean

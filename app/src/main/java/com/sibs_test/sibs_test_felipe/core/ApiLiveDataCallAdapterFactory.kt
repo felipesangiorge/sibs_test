@@ -1,7 +1,7 @@
 package com.sibs_test.sibs_test_felipe.core
 
 import androidx.lifecycle.LiveData
-import com.sibs_test.sibs_test_felipe.data.network.BaseResponse
+import com.sibs_test.sibs_test_felipe.network.BaseResponse
 import com.squareup.moshi.Types
 import retrofit2.CallAdapter
 import retrofit2.Retrofit

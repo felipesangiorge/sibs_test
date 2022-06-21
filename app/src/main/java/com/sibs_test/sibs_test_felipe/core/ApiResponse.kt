@@ -1,7 +1,7 @@
 package com.sibs_test.sibs_test_felipe.core
 
 import android.util.Log
-import com.sibs_test.sibs_test_felipe.data.network.BaseResponse
+import com.sibs_test.sibs_test_felipe.network.BaseResponse
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit

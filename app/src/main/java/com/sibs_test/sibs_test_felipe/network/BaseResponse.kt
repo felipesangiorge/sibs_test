@@ -1,4 +1,4 @@
-package com.sibs_test.sibs_test_felipe.data.network
+package com.sibs_test.sibs_test_felipe.network
 
 import com.squareup.moshi.JsonClass
 
