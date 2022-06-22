@@ -14,6 +14,18 @@
         tools:layout="@layout/fragment_book_store_list"
         >
 
+        <action
+            android:id="@+id/action_BookStoreList_to_BookStoreDetail"
+            app:destination="@id/BookStoreDetail"
+            />
+
     </fragment>
+
+    <fragment
+        android:id="@+id/BookStoreDetail"
+        android:name="com.sibs_test.sibs_test_felipe.ui.book_store_details.BookStoreDetailsFragment"
+        android:label="@string/book_store_detail_fragment_label"
+        tools:layout="@layout/fragment_book_detail"
+        />
 
 </navigation>

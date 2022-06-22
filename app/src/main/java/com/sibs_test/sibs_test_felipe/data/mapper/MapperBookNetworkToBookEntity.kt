@@ -10,10 +10,9 @@ object MapperBookNetworkToBookEntity : MapperNetworkModelToEntityModel<BookResul
         type.kind,
         type.selflink,
         MapperVolumeInfoNetworkToVolumeInfoEntity.mapFromNetwork(type.volumeInfo),
-        type.publishedDate,
-        type.description,
-        MapperSalesInfoNetworkToSalesInfoEntity.mapFromNetwork(type.saleInfo),
-        MapperIndustryIdentifiersNetworkToIndustryIdentifiersEntity.mapFromNetwork(type.industryIdentifiers)
+        type.saleInfo?.let {
+            MapperSalesInfoNetworkToSalesInfoEntity.mapFromNetwork(type.saleInfo)
+        }
     )
 }
 
@@ -21,7 +20,11 @@ object MapperVolumeInfoNetworkToVolumeInfoEntity : MapperNetworkModelToEntityMod
     override fun mapFromNetwork(type: VolumeInfoResult): VolumeInfoEntity = VolumeInfoEntity(
         type.title,
         type.subtitle,
-        type.authors
+        type.authors,
+        type.publishedDate,
+        type.description,
+        MapperThumbnailsInfoNetworkToThumbnailsInfoEntity.mapFromNetwork(type.imageLinks)
+
     )
 }
 
@@ -33,7 +36,9 @@ object MapperSalesInfoNetworkToSalesInfoEntity : MapperNetworkModelToEntityModel
 
 object MapperIndustryIdentifiersNetworkToIndustryIdentifiersEntity : MapperNetworkModelToEntityModel<IndustryIdentifiersResult, IndustryIdentifiersEntity> {
     override fun mapFromNetwork(type: IndustryIdentifiersResult): IndustryIdentifiersEntity = IndustryIdentifiersEntity(
-        MapperThumbnailsInfoNetworkToThumbnailsInfoEntity.mapFromNetwork(type.imageLink)
+        type.imageLinks?.let {
+            MapperThumbnailsInfoNetworkToThumbnailsInfoEntity.mapFromNetwork(type.imageLinks)
+        }
     )
 }
 

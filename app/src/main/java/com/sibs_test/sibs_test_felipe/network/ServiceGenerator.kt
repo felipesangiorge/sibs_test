@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Build
 import android.util.Log
 import com.sibs_test.sibs_test_felipe.BuildConfig
+import com.sibs_test.sibs_test_felipe.core.ApiCallAdapterFactory
 import com.sibs_test.sibs_test_felipe.core.ApiLiveDataCallAdapterFactory
 import com.sibs_test.sibs_test_felipe.core.RetryCallAdapterFactory
 import com.squareup.moshi.Types
@@ -32,6 +33,7 @@ class ServiceGenerator @Inject constructor() {
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addConverterFactory(ScalarsConverterFactory.create())
+            .addCallAdapterFactory(ApiCallAdapterFactory())
             .addCallAdapterFactory(ApiLiveDataCallAdapterFactory())
             .addCallAdapterFactory(RetryCallAdapterFactory())
     }

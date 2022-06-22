@@ -10,10 +10,9 @@ object MapperBookEntityToBookDomain : MapperEntityModelToDomainModel<BookEntity,
         type.kind,
         type.selflink,
         MapperVolumeInfoEntityToVolumeInfoDomain.mapFromEntity(type.volumeInfo),
-        type.publishedDate,
-        type.description,
-        MapperSalesInfoEntityToSalesInfoDomain.mapFromEntity(type.saleInfo),
-        MapperIndustryIdentifiersEntityToIndustryIdentifiersDomain.mapFromEntity(type.industryIdentifiersEntity)
+        type.saleInfo?.let {
+            MapperSalesInfoEntityToSalesInfoDomain.mapFromEntity(type.saleInfo)
+        }
     )
 }
 
@@ -21,7 +20,10 @@ object MapperVolumeInfoEntityToVolumeInfoDomain : MapperEntityModelToDomainModel
     override fun mapFromEntity(type: VolumeInfoEntity): VolumeInfoDomain = VolumeInfoDomain(
         type.title,
         type.subtitle,
-        type.authors
+        type.authors,
+        type.publishedDate,
+        type.description,
+        MapperThumbnailsInfoEntityToThumbnailsInfoDomain.mapFromEntity(type.imageLink)
     )
 }
 
@@ -33,7 +35,7 @@ object MapperSalesInfoEntityToSalesInfoDomain : MapperEntityModelToDomainModel<S
 
 object MapperIndustryIdentifiersEntityToIndustryIdentifiersDomain : MapperEntityModelToDomainModel<IndustryIdentifiersEntity, IndustryIdentifiersDomain> {
     override fun mapFromEntity(type: IndustryIdentifiersEntity): IndustryIdentifiersDomain = IndustryIdentifiersDomain(
-        MapperThumbnailsInfoEntityToThumbnailsInfoDomain.mapFromEntity(type.imageLink)
+            MapperThumbnailsInfoEntityToThumbnailsInfoDomain.mapFromEntity(type.imageLink)
     )
 }
 

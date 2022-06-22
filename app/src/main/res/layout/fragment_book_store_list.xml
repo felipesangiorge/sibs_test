@@ -23,12 +23,16 @@
                 android:id="@+id/topAppBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                app:titleTextColor="@color/white"
                 app:title="BookStore"
+                app:navigationIcon="@drawable/ic_book"
+                app:navigationIconTint="@color/white"
                 />
 
         </com.google.android.material.appbar.AppBarLayout>
 
         <com.airbnb.epoxy.EpoxyRecyclerView
+            android:id="@+id/rv_book_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_below="@+id/ab_title"

@@ -1,7 +1,10 @@
 package com.sibs_test.sibs_test_felipe.di.module
 
+import androidx.room.RoomDatabase
+import com.sibs_test.sibs_test_felipe.core.AppExecutors
 import com.sibs_test.sibs_test_felipe.data.repository.BookStoreRepository
 import com.sibs_test.sibs_test_felipe.data.repository.BookStoreRepository_Imp
+import com.sibs_test.sibs_test_felipe.database.AppDatabase
 import com.sibs_test.sibs_test_felipe.database.dao.BooksDao
 import com.sibs_test.sibs_test_felipe.network.BookStoreService
 import dagger.Module
@@ -18,6 +21,7 @@ object RepositoryModule {
     @Singleton
     fun provideBookStoreRepository(
         bookStoreService: BookStoreService,
-        booksDao: BooksDao
-    ): BookStoreRepository = BookStoreRepository_Imp(bookStoreService, booksDao)
+        booksDao: BooksDao,
+        appExecutors: AppExecutors
+    ): BookStoreRepository = BookStoreRepository_Imp(bookStoreService, booksDao, appExecutors)
 }

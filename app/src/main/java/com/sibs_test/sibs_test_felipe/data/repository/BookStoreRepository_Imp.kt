@@ -8,7 +8,6 @@ import com.airbnb.epoxy.EpoxyAsyncUtil
 import com.sibs_test.sibs_test_felipe.core.*
 import com.sibs_test.sibs_test_felipe.data.mapper.MapperBookNetworkToBookEntity
 import com.sibs_test.sibs_test_felipe.data.paginated.BookPagedBoundaryCallback
-import com.sibs_test.sibs_test_felipe.database.AppDatabase
 import com.sibs_test.sibs_test_felipe.database.dao.BooksDao
 import com.sibs_test.sibs_test_felipe.domain.mapper.MapperBookEntityToBookDomain
 import com.sibs_test.sibs_test_felipe.domain.model_domain.BookDomain
@@ -22,8 +21,7 @@ import javax.inject.Inject
 class BookStoreRepository_Imp @Inject constructor(
     private val bookStoreService: BookStoreService,
     private val booksDao: BooksDao,
-    private val appExecutors: AppExecutors,
-    private val db: AppDatabase
+    private val appExecutors: AppExecutors
 ) : BookStoreRepository {
 
     override fun getBookStoreListPaged(): PagedListing<BookDomain> {
@@ -104,7 +102,7 @@ class BookStoreRepository_Imp @Inject constructor(
         users: List<BookResult>,
         overrideInstruction: OverrideInstruction
     ) {
-        db.runInTransaction {
+        appExecutors.diskIo().execute {
             users.forEach {
                 when (overrideInstruction) {
                     OverrideInstruction.NotOverride -> {
@@ -132,11 +130,9 @@ class BookStoreRepository_Imp @Inject constructor(
                 }
                 is ApiSuccessResponse -> {
                     appExecutors.diskIo().execute {
-                        db.runInTransaction {
-                            booksDao.deleteAll()
-                            response.data.forEach {
-                                booksDao.insertOrIgnore(MapperBookNetworkToBookEntity.mapFromNetwork(it))
-                            }
+                        booksDao.deleteAll()
+                        response.data.forEach {
+                            booksDao.insertOrIgnore(MapperBookNetworkToBookEntity.mapFromNetwork(it))
                         }
 
                         networkState.postValue(Resource.Success(Unit))

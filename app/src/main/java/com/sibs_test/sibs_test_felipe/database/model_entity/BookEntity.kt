@@ -8,23 +8,23 @@ data class BookEntity(
     @PrimaryKey
     @ColumnInfo(name = "book_id") val id: String,
     @ColumnInfo(name = "book_kind") val kind: String,
-    @ColumnInfo(name = "book_selflink") val selflink: String,
+    @ColumnInfo(name = "book_selflink") val selflink: String?,
     @Embedded(prefix = "book_")
     val volumeInfo: VolumeInfoEntity,
-    @ColumnInfo(name = "book_publishedDate") val publishedDate: String,
-    @ColumnInfo(name = "book_description") val description: String,
     @Embedded(prefix = "book_")
-    val saleInfo: SalesInfoEntity,
-    @Embedded(prefix = "book_")
-    val industryIdentifiersEntity: IndustryIdentifiersEntity
+    val saleInfo: SalesInfoEntity?
 ) : EntityModel
 
 @Entity
 data class VolumeInfoEntity(
     @ColumnInfo(name = "volume_info_title") val title: String,
-    @ColumnInfo(name = "volume_info_subtitle") val subtitle: String,
+    @ColumnInfo(name = "volume_info_subtitle") val subtitle: String?,
     @field:TypeConverters(RoomTypeConverters::class)
-    @ColumnInfo(name = "volume_info_authors") val authors: List<String>
+    @ColumnInfo(name = "volume_info_authors") val authors: List<String>,
+    @ColumnInfo(name = "volume_info_publishedDate") val publishedDate: String,
+    @ColumnInfo(name = "volume_info_description") val description: String?,
+    @Embedded(prefix = "volume_info")
+    val imageLink: ThumbnailsInfoEntity
 ) : EntityModel
 
 @Entity
@@ -40,6 +40,6 @@ data class IndustryIdentifiersEntity(
 
 @Entity
 data class ThumbnailsInfoEntity(
-    @ColumnInfo(name = "smallThumbnail") val smallThumbnail: String,
-    @ColumnInfo(name = "thumbnail") val thumbnail: String
+    @ColumnInfo(name = "smallThumbnail") val smallThumbnail: String?,
+    @ColumnInfo(name = "thumbnail") val thumbnail: String?
 ) : EntityModel
