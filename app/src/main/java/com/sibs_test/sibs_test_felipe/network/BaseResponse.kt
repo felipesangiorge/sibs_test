@@ -19,7 +19,7 @@ data class BaseResponse<T>(
             val curr_page: Int,
             val total_pages: Int,
             val links: Links?
-        ){
+        ) {
             @JsonClass(generateAdapter = true)
             class Links(
                 val prev: String?,

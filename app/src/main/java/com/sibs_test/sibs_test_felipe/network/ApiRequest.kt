@@ -15,12 +15,6 @@ interface ApiRequest {
     }
 
     interface BookStoreApi {
-        @GET("volumes")
-        fun getBookList(
-            @Query("q") query: String = DEFAULT_QUERY,
-            @Query("maxResults") maxResults: Int = MAX_RESULTS,
-            @Query("startIndex") startIndex: Int = START_INDEX
-        ): LiveData<ApiResponse<List<BookResult>>>
 
         @GET("volumes")
         fun getBookListSync(
@@ -28,5 +22,12 @@ interface ApiRequest {
             @Query("maxResults") maxResults: Int = MAX_RESULTS,
             @Query("startIndex") startIndex: Int = START_INDEX
         ): ApiResponse<List<BookResult>>
+
+        @GET("volumes")
+        fun getBookListPaged(
+            @Query("q") query: String = DEFAULT_QUERY,
+            @Query("maxResults") maxResults: Int = MAX_RESULTS,
+            @Query("startIndex") startIndex: Int = START_INDEX
+        ): LiveData<ApiResponse<List<BookResult>>>
     }
 }

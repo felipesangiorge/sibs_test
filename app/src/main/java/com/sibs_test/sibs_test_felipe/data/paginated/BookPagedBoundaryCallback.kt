@@ -14,8 +14,7 @@ class BookPagedBoundaryCallback @Inject constructor(
     private val bookStoreService: BookStoreService,
     private val handleResponse: (events: List<BookResult>, overrideExisting: Boolean, onComplete: () -> Unit) -> Unit,
     private val retryExecutor: Executor,
-    private val networkPageSize: Int,
-    private val textSearched: String? = null
+    private val networkPageSize: Int
 ) : PagedList.BoundaryCallback<BookDomain>() {
 
 

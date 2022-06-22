@@ -9,24 +9,24 @@ data class BookResult(
     val description: String,
     val saleInfo: SalesInfoResult,
     val industryIdentifiers: IndustryIdentifiersResult
-): NetworkModule
+) : NetworkModel
 
 
 data class VolumeInfoResult(
     val title: String,
     val subtitle: String,
     val authors: List<String>
-): NetworkModule
+) : NetworkModel
 
 data class SalesInfoResult(
     val buyLink: String?
-): NetworkModule
+) : NetworkModel
 
 data class IndustryIdentifiersResult(
     val imageLink: ThumbnailsInfoResult
-): NetworkModule
+) : NetworkModel
 
 data class ThumbnailsInfoResult(
     val smallThumbnail: String,
     val thumbnail: String
-): NetworkModule
+) : NetworkModel

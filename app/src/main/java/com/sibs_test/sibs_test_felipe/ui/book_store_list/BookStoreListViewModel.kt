@@ -24,20 +24,18 @@ class BookStoreListViewModel @Inject constructor(
     }
 
     init {
-        _error.addSource(getBookStoreListResult){
-            when(it){
-                is Resource.Failure -> Log.e("Fail","${it.error.message}")
+        _error.addSource(getBookStoreListResult) {
+            when (it) {
+                is Resource.Failure -> Log.e("Fail", "${it.error.message}")
                 is Resource.Loading -> {
-
                 }
                 is Resource.Success -> {
-                    Log.e("Success","${it.data}")
+                    Log.e("Success", "${it.data}")
                 }
             }
         }
     }
 
     override fun bookItemClicked() {
-
     }
 }
