@@ -16,6 +16,13 @@ class BookStoreDetailsViewModel @Inject constructor(
     private val _error = MediatorLiveData<Resource.Error>()
     override val error: LiveData<Resource.Error> = _error
 
+    private val _navigation = MediatorLiveData<BookStoreDetailsContract.ViewInstructions>()
+    override val navigation: LiveData<BookStoreDetailsContract.ViewInstructions> = _navigation
+
     private val _book = MutableLiveData<BookDomain>(bookArgument)
     override val book: LiveData<BookDomain> = _book
+
+    override fun onBackClicked() {
+        _navigation.value = BookStoreDetailsContract.ViewInstructions.NavigateBack
+    }
 }

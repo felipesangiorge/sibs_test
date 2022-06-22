@@ -17,6 +17,7 @@
         <action
             android:id="@+id/action_BookStoreList_to_BookStoreDetail"
             app:destination="@id/BookStoreDetail"
+            app:popUpToSaveState="true"
             />
 
     </fragment>
@@ -26,6 +27,11 @@
         android:name="com.sibs_test.sibs_test_felipe.ui.book_store_details.BookStoreDetailsFragment"
         android:label="@string/book_store_detail_fragment_label"
         tools:layout="@layout/fragment_book_detail"
-        />
+        >
+        <action
+            android:id="@+id/action_BookStoreDetail_to_BookStoreList"
+            app:destination="@id/BookStoreList"
+            />
+    </fragment>
 
 </navigation>

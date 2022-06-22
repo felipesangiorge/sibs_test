@@ -10,10 +10,15 @@ interface BookStoreDetailsContract {
 
     interface ViewState{
         val error: LiveData<Resource.Error>
+        val navigation: LiveData<ViewInstructions>
         val book: LiveData<BookDomain>
     }
 
     interface ViewActions{
+        fun onBackClicked()
+    }
 
+    sealed class ViewInstructions{
+        object NavigateBack: ViewInstructions()
     }
 }
