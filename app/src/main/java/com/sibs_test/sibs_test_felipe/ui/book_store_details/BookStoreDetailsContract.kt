@@ -6,19 +6,21 @@ import com.sibs_test.sibs_test_felipe.domain.model_domain.BookDomain
 
 interface BookStoreDetailsContract {
 
-    interface ViewModel: ViewState, ViewActions
+    interface ViewModel : ViewState, ViewActions
 
-    interface ViewState{
+    interface ViewState {
         val error: LiveData<Resource.Error>
         val navigation: LiveData<ViewInstructions>
         val book: LiveData<BookDomain>
+        val isFavoriteBook: LiveData<Pair<Boolean, BookDomain>>
     }
 
-    interface ViewActions{
+    interface ViewActions {
         fun onBackClicked()
+        fun favoriteClicked(book: BookDomain, favoriteState: Boolean)
     }
 
-    sealed class ViewInstructions{
-        object NavigateBack: ViewInstructions()
+    sealed class ViewInstructions {
+        object NavigateBack : ViewInstructions()
     }
 }

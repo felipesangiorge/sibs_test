@@ -1,14 +1,13 @@
 package com.sibs_test.sibs_test_felipe.ui.book_store_list
 
-import android.os.Bundle
-import androidx.lifecycle.*
-import androidx.savedstate.SavedStateRegistry
-import com.sibs_test.sibs_test_felipe.core.PagedListing
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.switchMap
 import com.sibs_test.sibs_test_felipe.core.Resource
 import com.sibs_test.sibs_test_felipe.data.repository.BookStoreRepository_Imp
 import com.sibs_test.sibs_test_felipe.domain.model_domain.BookDomain
 import com.sibs_test.sibs_test_felipe.extensions.NonnullMediatorLiveData
-import dagger.assisted.Assisted
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

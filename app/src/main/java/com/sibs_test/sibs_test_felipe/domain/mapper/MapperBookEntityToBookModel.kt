@@ -35,7 +35,7 @@ object MapperSalesInfoEntityToSalesInfoDomain : MapperEntityModelToDomainModel<S
 
 object MapperIndustryIdentifiersEntityToIndustryIdentifiersDomain : MapperEntityModelToDomainModel<IndustryIdentifiersEntity, IndustryIdentifiersDomain> {
     override fun mapFromEntity(type: IndustryIdentifiersEntity): IndustryIdentifiersDomain = IndustryIdentifiersDomain(
-            MapperThumbnailsInfoEntityToThumbnailsInfoDomain.mapFromEntity(type.imageLink)
+        MapperThumbnailsInfoEntityToThumbnailsInfoDomain.mapFromEntity(type.imageLink)
     )
 }
 

@@ -30,8 +30,7 @@ interface BooksDao {
     """
     )
     fun getAllPagedBooks(): DataSource.Factory<Int, BookEntity>
-
-
+    
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertOrIgnore(obj: BookEntity): Long
 

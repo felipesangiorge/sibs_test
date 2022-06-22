@@ -50,6 +50,26 @@ class BookStoreDetailsFragment : Fragment() {
             }
         })
 
+        viewModel.isFavoriteBook.observe(viewLifecycleOwner, Observer {
+            if (it.first) {
+                Glide.with(binding.fbFavorite)
+                    .load(R.drawable.ic_favorite)
+                    .into(binding.fbFavorite)
+
+                binding.fbFavorite.setOnClickListener { _ ->
+                    viewModel.favoriteClicked(it.second, false)
+                }
+            } else {
+                Glide.with(binding.fbFavorite)
+                    .load(R.drawable.ic_favorite_border)
+                    .into(binding.fbFavorite)
+
+                binding.fbFavorite.setOnClickListener { _ ->
+                    viewModel.favoriteClicked(it.second, true)
+                }
+            }
+        })
+
         viewModel.book.observe(viewLifecycleOwner, Observer {
 
             Glide.with(binding.ivThumbnail)

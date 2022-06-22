@@ -43,14 +43,37 @@
             android:orientation="vertical"
             >
 
-            <ImageView
-                android:id="@+id/iv_thumbnail"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/ic_image_placeholder"
-                tools:src="@tools:sample/backgrounds/scenic"
-                />
+                android:layout_height="wrap_content"
+                >
+
+                <ImageView
+                    android:id="@+id/iv_thumbnail"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_image_placeholder"
+                    tools:src="@tools:sample/backgrounds/scenic"
+                    />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fb_favorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:backgroundTint="@color/white"
+                    app:tint="@android:color/holo_red_dark"
+                    app:srcCompat="@drawable/ic_favorite"
+                    />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -79,9 +102,9 @@
                     android:id="@+id/tv_publication"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
+                    android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="12/03/1994"
@@ -93,8 +116,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_title"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginTop="8dp"
                     android:layout_marginHorizontal="8dp"
+                    android:layout_marginTop="8dp"
                     android:ellipsize="end"
                     android:maxLines="2"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -109,8 +132,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_title"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginTop="8dp"
                     android:layout_marginHorizontal="8dp"
+                    android:layout_marginTop="8dp"
                     android:textAlignment="textEnd"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
