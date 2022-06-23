@@ -9,17 +9,18 @@ data class BookDomain(
     val kind: String,
     val selflink: String?,
     val volumeInfo: VolumeInfoDomain,
-    val saleInfo: SalesInfoDomain?
+    val saleInfo: SalesInfoDomain?,
+    val favorite: Boolean
 ) : DomainModel, Parcelable
 
 @Parcelize
 data class VolumeInfoDomain(
     val title: String,
     val subtitle: String?,
-    val authors: List<String>,
-    val publishedDate: String,
+    val authors: List<String>?,
+    val publishedDate: String?,
     val description: String?,
-    val imageLinks: ThumbnailsInfoDomain
+    val imageLinks: ThumbnailsInfoDomain?
 ) : DomainModel, Parcelable
 
 @Parcelize

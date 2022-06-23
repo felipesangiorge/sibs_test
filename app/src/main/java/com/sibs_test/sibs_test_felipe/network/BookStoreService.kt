@@ -4,7 +4,7 @@ import javax.inject.Inject
 
 class BookStoreService @Inject constructor(private val bookStoreApi: ApiRequest.BookStoreApi) {
 
-    fun getBookStoreListSync() = bookStoreApi.getBookListSync()
+    fun getBookStoreListSync(startIndex: Int) = bookStoreApi.getBookListSync(startIndex = startIndex)
 
     fun getBookStoreListPaged() = bookStoreApi.getBookListPaged()
 }

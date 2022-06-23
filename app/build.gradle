@@ -1,3 +1,13 @@
+buildscript {
+    repositories {
+        google()
+    }
+    dependencies {
+        def nav_version = "2.4.2"
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version")
+    }
+}
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
@@ -19,9 +29,9 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        javaCompileOptions{
+        javaCompileOptions {
             annotationProcessorOptions {
-                arguments += ["room.incremental": "true", "room.schemaLocation":"$projectDir/schemas".toString()]
+                arguments += ["room.incremental": "true", "room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
     }
@@ -75,6 +85,10 @@ dependencies {
 
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$live_data"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$live_data"
+
+    //RXKOTLIN
+    def rx_kotlin = "1.0.0"
+    implementation "io.reactivex:rxkotlin:$rx_kotlin"
 
     //RETROFIT
     def retrofit_version = "2.9.0"

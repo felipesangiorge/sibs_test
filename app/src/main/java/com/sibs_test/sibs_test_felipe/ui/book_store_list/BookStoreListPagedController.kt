@@ -13,11 +13,19 @@ class BookStoreListPagedController(
         EpoxyAsyncUtil.getAsyncBackgroundHandler()
     ) {
 
+    var favoriteList: ArrayList<String>? = null
+        set(value) {
+            field = value
+            requestForcedModelBuild()
+        }
+
     override fun buildItemModel(currentPosition: Int, item: BookDomain?): EpoxyModel<*> {
+        setFilterDuplicates(true)
         if (item == null) throw UnsupportedOperationException()
         return BookStoreItemModel_()
             .id(item.id)
             .book(item)
             .bookClick(bookClicked)
+            .favorite(favoriteList?.contains(item.id) ?: false)
     }
 }

@@ -21,7 +21,6 @@ package com.sibs_test.sibs_test_felipe.utils;
  *  and unicode 2017 that are used for separating the items in a list.
  */
 
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;

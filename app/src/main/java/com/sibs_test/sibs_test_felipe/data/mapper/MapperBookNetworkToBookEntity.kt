@@ -23,8 +23,9 @@ object MapperVolumeInfoNetworkToVolumeInfoEntity : MapperNetworkModelToEntityMod
         type.authors,
         type.publishedDate,
         type.description,
-        MapperThumbnailsInfoNetworkToThumbnailsInfoEntity.mapFromNetwork(type.imageLinks)
-
+        type.imageLinks?.let {
+            MapperThumbnailsInfoNetworkToThumbnailsInfoEntity.mapFromNetwork(it)
+        }
     )
 }
 

@@ -3,6 +3,7 @@ package com.sibs_test.sibs_test_felipe.ui.book_store_details
 import androidx.lifecycle.LiveData
 import com.sibs_test.sibs_test_felipe.core.Resource
 import com.sibs_test.sibs_test_felipe.domain.model_domain.BookDomain
+import com.sibs_test.sibs_test_felipe.extensions.Event
 
 interface BookStoreDetailsContract {
 
@@ -10,9 +11,8 @@ interface BookStoreDetailsContract {
 
     interface ViewState {
         val error: LiveData<Resource.Error>
-        val navigation: LiveData<ViewInstructions>
+        val navigation: LiveData<Event<ViewInstructions>>
         val book: LiveData<BookDomain>
-        val isFavoriteBook: LiveData<Pair<Boolean, BookDomain>>
     }
 
     interface ViewActions {

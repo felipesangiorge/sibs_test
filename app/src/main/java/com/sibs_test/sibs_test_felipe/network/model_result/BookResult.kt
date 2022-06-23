@@ -12,10 +12,10 @@ data class BookResult(
 data class VolumeInfoResult(
     val title: String,
     val subtitle: String?,
-    val authors: List<String>,
-    val publishedDate: String,
+    val authors: List<String>?,
+    val publishedDate: String?,
     val description: String?,
-    val imageLinks: ThumbnailsInfoResult
+    val imageLinks: ThumbnailsInfoResult?
 ) : NetworkModel
 
 data class SalesInfoResult(

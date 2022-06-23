@@ -12,7 +12,8 @@ object MapperBookEntityToBookDomain : MapperEntityModelToDomainModel<BookEntity,
         MapperVolumeInfoEntityToVolumeInfoDomain.mapFromEntity(type.volumeInfo),
         type.saleInfo?.let {
             MapperSalesInfoEntityToSalesInfoDomain.mapFromEntity(type.saleInfo)
-        }
+        },
+        type.favorite
     )
 }
 
@@ -23,7 +24,9 @@ object MapperVolumeInfoEntityToVolumeInfoDomain : MapperEntityModelToDomainModel
         type.authors,
         type.publishedDate,
         type.description,
-        MapperThumbnailsInfoEntityToThumbnailsInfoDomain.mapFromEntity(type.imageLink)
+        type.imageLink?.let {
+            MapperThumbnailsInfoEntityToThumbnailsInfoDomain.mapFromEntity(type.imageLink)
+        }
     )
 }
 

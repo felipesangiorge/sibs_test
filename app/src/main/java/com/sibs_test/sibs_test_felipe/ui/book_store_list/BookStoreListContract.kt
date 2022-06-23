@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
 import com.sibs_test.sibs_test_felipe.core.Resource
 import com.sibs_test.sibs_test_felipe.domain.model_domain.BookDomain
+import com.sibs_test.sibs_test_felipe.extensions.Event
 
 interface BookStoreListContract {
 
@@ -11,15 +12,18 @@ interface BookStoreListContract {
 
     interface ViewState {
         val error: LiveData<Resource.Error>
-        val navigation: LiveData<ViewInstructions>
+        val navigation: LiveData<Event<ViewInstructions>>
         val pagedBooks: LiveData<PagedList<BookDomain>>
+        val favoriteList: LiveData<ArrayList<String>>
     }
 
     interface ViewActions {
         fun bookItemClicked(book: BookDomain)
+
+        fun refreshFavoriteList()
     }
 
     sealed class ViewInstructions {
-        data class NavigateToBookDetails(val book: BookDomain): ViewInstructions()
+        data class NavigateToBookDetails(val book: BookDomain) : ViewInstructions()
     }
 }

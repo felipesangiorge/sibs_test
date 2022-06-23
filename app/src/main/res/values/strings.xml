@@ -4,8 +4,8 @@
     <string name="app_name">sibs_teste_felipe</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="book_store_list_fragment_label">BookStoreList</string>
-    <string name="book_store_detail_fragment_label">BookStoreDetail</string>
+    <string name="book_store_list_fragment_label">Book Store</string>
+    <string name="book_store_detail_fragment_label">Book Detail</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 

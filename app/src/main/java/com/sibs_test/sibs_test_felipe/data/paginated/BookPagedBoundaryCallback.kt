@@ -17,11 +17,9 @@ class BookPagedBoundaryCallback @Inject constructor(
     private val networkPageSize: Int
 ) : PagedList.BoundaryCallback<BookDomain>() {
 
-
     var nextPageToLoad = 1
     val helper = PagingRequestHelper(retryExecutor)
 
-    //    val networkState = helper.createStatusLiveData()
     val networkState = MutableLiveData<Resource<Unit>>()
 
 
@@ -34,11 +32,11 @@ class BookPagedBoundaryCallback @Inject constructor(
             helper.runIfNotRunning(PagingRequestHelper.RequestType.INITIAL) {
                 val loadedPage = nextPageToLoad
                 networkState.postValue(Resource.Loading(Unit))
-                val response = bookStoreService.getBookStoreListSync()
+                val response = bookStoreService.getBookStoreListSync(nextPageToLoad)
                 when (response) {
                     is ApiSuccessResponse -> {
-                        nextPageToLoad++
-                        insertItemsIntoDb(response.data, it, loadedPage == 1)
+                        nextPageToLoad += 20
+                        insertItemsIntoDb(response.data, it, loadedPage < nextPageToLoad)
                     }
                     is ApiErrorResponse -> {
                         networkState.postValue(Resource.Failure(Unit, Resource.Error(response.message)))
@@ -62,11 +60,11 @@ class BookPagedBoundaryCallback @Inject constructor(
             helper.runIfNotRunning(PagingRequestHelper.RequestType.AFTER) {
                 val loadedPage = nextPageToLoad
                 networkState.postValue(Resource.Loading(Unit))
-                val response = bookStoreService.getBookStoreListSync()
+                val response = bookStoreService.getBookStoreListSync(nextPageToLoad)
                 when (response) {
                     is ApiSuccessResponse -> {
-                        nextPageToLoad++
-                        insertItemsIntoDb(response.data, it, loadedPage == 1)
+                        nextPageToLoad += 20
+                        insertItemsIntoDb(response.data, it, loadedPage < nextPageToLoad)
                     }
                     is ApiErrorResponse -> {
                         networkState.postValue(Resource.Failure(Unit, Resource.Error(response.message)))

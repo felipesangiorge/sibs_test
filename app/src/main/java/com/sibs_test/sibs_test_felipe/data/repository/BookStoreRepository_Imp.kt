@@ -24,6 +24,18 @@ class BookStoreRepository_Imp @Inject constructor(
     private val appExecutors: AppExecutors
 ) : BookStoreRepository {
 
+    override fun getBookById(id: String): LiveData<BookDomain> {
+        return booksDao.getBookById(id).map {
+            MapperBookEntityToBookDomain.mapFromEntity(it)
+        }
+    }
+
+    override fun favoriteBookSync(bookId: String, favoriteState: Boolean) {
+        appExecutors.diskIo().execute {
+            booksDao.bookFavoriteState(bookId, favoriteState)
+        }
+    }
+
     override fun getBookStoreListPaged(): PagedListing<BookDomain> {
 
         appExecutors.diskIo().execute {
@@ -39,14 +51,13 @@ class BookStoreRepository_Imp @Inject constructor(
 
         val pagedListConfig = PagedList.Config.Builder()
             .setEnablePlaceholders(false)
-            .setPageSize(50)
+            .setPageSize(20)
             .build()
 
-        val dataSourceFactory =
-            booksDao.getAllPagedBooks()
-                .map {
-                    MapperBookEntityToBookDomain.mapFromEntity(it)
-                }
+        val dataSourceFactory = booksDao.getAllPagedBooks().map {
+            MapperBookEntityToBookDomain.mapFromEntity(it)
+        }
+
 
         val pagedList = LivePagedListBuilderUtils.build(
             null,
@@ -62,7 +73,7 @@ class BookStoreRepository_Imp @Inject constructor(
             refresh()
         }.map {
             if (it is Resource.Success) {
-                boundaryCallback.nextPageToLoad = 2
+                boundaryCallback.nextPageToLoad = 21
             }
             it
         }

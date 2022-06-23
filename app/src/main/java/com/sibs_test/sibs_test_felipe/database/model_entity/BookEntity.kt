@@ -12,7 +12,8 @@ data class BookEntity(
     @Embedded(prefix = "book_")
     val volumeInfo: VolumeInfoEntity,
     @Embedded(prefix = "book_")
-    val saleInfo: SalesInfoEntity?
+    val saleInfo: SalesInfoEntity?,
+    @ColumnInfo(name = "book_favorite") val favorite: Boolean = false
 ) : EntityModel
 
 @Entity
@@ -20,11 +21,11 @@ data class VolumeInfoEntity(
     @ColumnInfo(name = "volume_info_title") val title: String,
     @ColumnInfo(name = "volume_info_subtitle") val subtitle: String?,
     @field:TypeConverters(RoomTypeConverters::class)
-    @ColumnInfo(name = "volume_info_authors") val authors: List<String>,
-    @ColumnInfo(name = "volume_info_publishedDate") val publishedDate: String,
+    @ColumnInfo(name = "volume_info_authors") val authors: List<String>?,
+    @ColumnInfo(name = "volume_info_publishedDate") val publishedDate: String?,
     @ColumnInfo(name = "volume_info_description") val description: String?,
     @Embedded(prefix = "volume_info")
-    val imageLink: ThumbnailsInfoEntity
+    val imageLink: ThumbnailsInfoEntity?
 ) : EntityModel
 
 @Entity

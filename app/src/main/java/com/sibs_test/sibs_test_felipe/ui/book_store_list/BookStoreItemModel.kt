@@ -20,11 +20,14 @@ abstract class BookStoreItemModel : EpoxyModelWithHolder<BookStoreItemModel.Hold
     lateinit var book: BookDomain
 
     @EpoxyAttribute
+    var favorite: Boolean = false
+
+    @EpoxyAttribute
     lateinit var bookClick: (book: BookDomain) -> Unit
 
     override fun bind(holder: Holder): Unit = with(holder) {
 
-        book.volumeInfo.imageLinks.thumbnail?.let {
+        book.volumeInfo.imageLinks?.thumbnail?.let {
             Glide.with(iv_thumbnail)
                 .load(it.replace("http", "https"))
                 .error(R.drawable.ic_image_placeholder)
@@ -33,9 +36,9 @@ abstract class BookStoreItemModel : EpoxyModelWithHolder<BookStoreItemModel.Hold
         }
 
         tv_title.text = book.volumeInfo.title
-        tv_publication.text = book.volumeInfo.publishedDate
         tv_description.text = book.volumeInfo.description
         iv_buy_availability.toVisibility = book.saleInfo?.buyLink != null
+        iv_favorite.toVisibility = favorite
 
         top_parent.setOnClickListener {
             bookClick.invoke(book)
@@ -47,8 +50,8 @@ abstract class BookStoreItemModel : EpoxyModelWithHolder<BookStoreItemModel.Hold
         val top_parent by bind<CardView>(R.id.top_parent)
         val iv_thumbnail by bind<ImageView>(R.id.iv_thumbnail)
         val tv_title by bind<TextView>(R.id.tv_title)
-        val tv_publication by bind<TextView>(R.id.tv_publication)
         val tv_description by bind<TextView>(R.id.tv_description)
         val iv_buy_availability by bind<ImageView>(R.id.iv_buy_availability)
+        val iv_favorite by bind<ImageView>(R.id.iv_favorite)
     }
 }

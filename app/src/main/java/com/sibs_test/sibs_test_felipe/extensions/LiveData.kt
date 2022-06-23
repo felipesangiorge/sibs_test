@@ -62,6 +62,18 @@ fun <T> LiveData<Resource<T>>.asCompletable(): LiveData<Resource<T>> {
     return mediator
 }
 
+/**
+ * Does the `onNext` function after emitting the item to the observers
+ */
+fun <T> LiveData<T>.doAfterNext(onNext: OnNextAction<T>): MutableLiveData<T> {
+    val mutableLiveData: MediatorLiveData<T> = MediatorLiveData()
+    mutableLiveData.addSource(this) {
+        mutableLiveData.value = it
+        onNext(it)
+    }
+    return mutableLiveData
+}
+
 
 @MainThread
 fun <T : Any> LiveData<T>.throttleWithTimeout(
@@ -280,3 +292,4 @@ fun <T> LiveData<T>.ignoreFirstValueWhen(predicate: (T) -> Boolean): LiveData<T>
     return mediator
 }
 
+typealias OnNextAction<T> = (T?) -> Unit

@@ -11,7 +11,7 @@ interface ApiRequest {
     companion object {
         const val DEFAULT_QUERY = "mobile development"
         const val MAX_RESULTS = 20
-        const val START_INDEX = 0
+        const val START_INDEX = 1
     }
 
     interface BookStoreApi {
