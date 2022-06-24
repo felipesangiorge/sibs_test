@@ -10,6 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >
 
         <com.google.android.material.appbar.AppBarLayout
@@ -32,7 +33,19 @@
                 app:navigationIconTint="@color/white"
                 app:title="BookStore"
                 app:titleTextColor="@color/white"
-                />
+                >
+
+                <ImageView
+                    android:id="@+id/iv_favorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="12dp"
+                    app:tint="@color/white"
+                    app:srcCompat="@drawable/ic_favorite_border"
+                    />
+
+            </com.google.android.material.appbar.MaterialToolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
 

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -38,6 +39,10 @@ class BookStoreListFragment : Fragment() {
         binding.rvBookList.setController(controller)
         binding.rvBookList.layoutManager = GridLayoutManager(requireContext(), 2)
 
+        binding.ivFavorite.setOnClickListener {
+            viewModel.favoriteFilterClicked()
+        }
+
         viewModel.navigation.observe(viewLifecycleOwner, EventObserver {
             when (it) {
                 is BookStoreListContract.ViewInstructions.NavigateToBookDetails -> {
@@ -59,6 +64,16 @@ class BookStoreListFragment : Fragment() {
 
         viewModel.favoriteList.observe(viewLifecycleOwner, Observer {
             controller.favoriteList = it
+        })
+
+        viewModel.favoriteState.observe(viewLifecycleOwner, Observer {
+            controller.favorite = it
+
+            if (it) {
+                binding.ivFavorite.setImageDrawable(AppCompatResources.getDrawable(requireContext(), R.drawable.ic_favorite))
+            } else {
+                binding.ivFavorite.setImageDrawable(AppCompatResources.getDrawable(requireContext(), R.drawable.ic_favorite_border))
+            }
         })
 
         viewModel.networkStage.observe(viewLifecycleOwner, Observer {

@@ -19,11 +19,23 @@ class BookStoreListPagedController(
             requestForcedModelBuild()
         }
 
+    var favorite: Boolean = false
+        set(value) {
+            field = value
+            requestForcedModelBuild()
+        }
+
     override fun buildItemModel(currentPosition: Int, item: BookDomain?): EpoxyModel<*> {
         setFilterDuplicates(true)
         if (item == null) throw UnsupportedOperationException()
         return BookStoreItemModel_()
-            .id(item.id)
+            .id(
+                if (favorite) {
+                    if (favoriteList?.contains(item.id) == true) item.id else "favorite"
+                } else {
+                    item.id
+                }
+            )
             .book(item)
             .bookClick(bookClicked)
             .favorite(favoriteList?.contains(item.id) ?: false)

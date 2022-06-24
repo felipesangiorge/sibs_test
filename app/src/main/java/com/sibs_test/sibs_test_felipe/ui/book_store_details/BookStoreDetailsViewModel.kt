@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class BookStoreDetailsViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val bookRepository: BookStoreRepository_Imp,
+    private val bookStoreRepository: BookStoreRepository_Imp,
     private val tinyDB: TinyDB
 ) : ViewModel(), BookStoreDetailsContract.ViewModel {
 
@@ -29,19 +29,25 @@ class BookStoreDetailsViewModel @Inject constructor(
     private val _navigation = MediatorLiveData<Event<BookStoreDetailsContract.ViewInstructions>>()
     override val navigation: LiveData<Event<BookStoreDetailsContract.ViewInstructions>> = _navigation
 
-    override val book: LiveData<BookDomain> = bookRepository.getBookById(bookArgument.id)
+    override val book: LiveData<BookDomain> = bookStoreRepository.getBookById(bookArgument.id)
+
+    init {
+        tinyDB.getListString("cachedFavoriteList")?.forEach {
+            bookStoreRepository.favoriteBookSync(it, true)
+        }
+    }
 
     override fun favoriteClicked(book: BookDomain, favoriteState: Boolean) {
         if (favoriteState) {
             cachedFavoriteList += book.id
             tinyDB.putListString("cachedFavoriteList", cachedFavoriteList)
 
-            bookRepository.favoriteBookSync(book.id, favoriteState)
+            bookStoreRepository.favoriteBookSync(book.id, favoriteState)
         } else {
             cachedFavoriteList.remove(book.id)
             tinyDB.putListString("cachedFavoriteList", cachedFavoriteList)
 
-            bookRepository.favoriteBookSync(book.id, favoriteState)
+            bookStoreRepository.favoriteBookSync(book.id, favoriteState)
         }
     }
 

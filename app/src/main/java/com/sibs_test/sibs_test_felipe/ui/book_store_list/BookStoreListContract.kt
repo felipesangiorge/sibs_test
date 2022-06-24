@@ -15,12 +15,15 @@ interface BookStoreListContract {
         val navigation: LiveData<Event<ViewInstructions>>
         val pagedBooks: LiveData<PagedList<BookDomain>>
         val favoriteList: LiveData<ArrayList<String>>
+        val favoriteState: LiveData<Boolean>
     }
 
     interface ViewActions {
         fun bookItemClicked(book: BookDomain)
 
         fun refreshFavoriteList()
+
+        fun favoriteFilterClicked()
     }
 
     sealed class ViewInstructions {

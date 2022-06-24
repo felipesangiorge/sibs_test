@@ -41,11 +41,18 @@ class BookStoreListViewModel @Inject constructor(
         tinyDB.getListString("cachedFavoriteList")
     }
 
+    private val _favoriteState = MutableLiveData(false)
+    override val favoriteState: LiveData<Boolean> = _favoriteState
+
     init {
     }
 
     override fun refreshFavoriteList() {
         _favoriteList.value = Unit
+    }
+
+    override fun favoriteFilterClicked() {
+        _favoriteState.value = _favoriteState.value?.not()
     }
 
     override fun bookItemClicked(book: BookDomain) {
